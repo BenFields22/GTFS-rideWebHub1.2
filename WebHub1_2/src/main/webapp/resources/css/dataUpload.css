@@ -1,0 +1,94 @@
+body {
+  
+  font-size: 100%;
+  font-family: "PT Sans", sans-serif;
+  color: #f8f7ee;
+  background: url("../img/wallpaper.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+header {
+  position: relative;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+  color:black:
+}
+header img{
+	position:absolute;
+	left:0;
+	top:0;
+	opacity:1.0;
+	width:12%;
+	height:100%;
+}
+
+#edit2 textarea{
+	width:800px;
+	height:400px;
+}
+#createRideFeedInfo,#createRider_Trip,#trip_capacity,#createRidership,#board_alight{
+	color:black;
+}
+#createRideFeedInfo strong{
+	color:red;
+}
+#createRider_Trip strong{
+	color:red;
+}
+#trip_capacity strong{
+	color:red;
+}
+#createRidership strong{
+	color:red;
+}
+#board_alight strong{
+	color:red;
+}
+
+header h1 {
+	color:black;
+  font-size: 30px;
+  font-size: 2.00rem;
+  text-decoration: underline;
+}
+#loader{
+	width:500;
+	height:500;
+}
+
+#editarea{
+	border: 5px solid black;
+	position:relative;
+	width:auto;
+	height:auto;
+}
+#edit2{
+	position:relative;
+	width:95%;
+	height:500px;
+}
+#filename{
+	margin:15px;
+}
+
+#fileChecklist{
+	color:black;
+	margin:20px;
+}
+#create_table{
+	color:black;
+}
+
+
+#uploaded-files{
+	color:black;
+}
+.hidden{
+	display:none;
+}

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="resources/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="resources/css/style.css"> <!-- Resource style -->
+	<script src="resources/js/modernizr.js"></script> <!-- Modernizr -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+  	
+	<title>GTFS-ride WebHub</title>
+</head>
+<body>
+<div class="wrapper">
+<header>
+	<img src="resources/img/odotlogo.png">
+	<h1>GTFS-ride WebHub</h1>
+</header>
+<div class="cd-tabs">
+	<nav>
+		<ul class="cd-tabs-navigation">
+			<li><a data-content="Home" class="selected" href="#0">Home</a></li>
+			<li><a data-content="Validation" href="#0">Validation</a></li>
+			<li><a data-content="Data Entry" href="#0">Data Entry</a></li>
+			<li><a data-content="Reports" href="#0">Reports</a></li>
+			<li><a data-content="About" href="#0">About</a></li>
+			<li><a data-content="Contact" href="#0">Contact</a></li>
+		</ul> <!-- cd-tabs-navigation -->
+	</nav>
+
+	<ul class="cd-tabs-content">
+		<li id='homePanel' data-content="Home" class="selected">
+			<p>Welcome to the GTFS-ride WebHub. This page provides you with a suite of applications to support the GTFS-ride data standard.
+				Information regarding the standard can be found at <a target=# href="https://github.com/ODOT-PTS/GTFS-ride">https://github.com/ODOT-PTS/GTFS-ride</a>.
+				This tool suite provides the ability to perform the following tasks:<br>
+				- Validate GTFS-ride feeds<br>
+			- Enter GTFS-ride feeds into a central data repository<br>
+			- Create new GTFS-ride feeds<br>
+			- Run analytics on ridership data contained within the data repository<br>
+			</p>
+			
+		</li>
+
+		<li id='validationPanel'data-content="Validation">
+			<p>
+				A fileset intended to represent GTFS-ride feed should be validated using the GTFS-ride validation tool before uploading to ensure compatibility with the central data repository and the report generation tools.
+				To validate a GTFS-ride feed please use the GTFS-ride feed validation tool found at <a target=# href="https://github.com/ODOT-PTS/transitfeed-ride">https://github.com/ODOT-PTS/transitfeed-ride</a>. 
+			</p>
+
+		</li>
+
+		<li id='dataPanel' data-content="Data Entry">
+			<p>Please Select the option that best describes your data:<br>
+  				<input onclick= updateAns(this) type="radio" name="dataType" value="1"> Complete unvalidated GTFS-ride feed<br>
+  				<input onclick= updateAns(this) type="radio" name="dataType" value="2"> Complete validated GTFS-ride feed<br>
+  				<input onclick= updateAns(this) type="radio" name="dataType" value="3"> Partial GTFS-ride feed<br>
+  				<input onclick= updateAns(this) type="radio" name="dataType" value="4"> GTFS feed<br>
+  				<input  type="submit" value= "Submit" onclick="return checkAnswer()"> 
+			</p>
+		</li>
+
+		<li id='analyticsPanel'data-content="Reports">
+			<p>
+			Please select the parameters for the report you would like to generate:<br>
+				Report Type:
+				<select id="report">
+					<option value="1">Aggregate Ridership</option>
+					<option value="2">Resource Utilization</option>
+					<option value="3">Density Report</option>
+				</select><br>
+				Aggregation Level:
+				<select id="report">
+					<option value="1">System</option>
+					<option value="2">Route</option>
+					<option value="3">Stop</option>
+				</select><br>
+				Agency:
+				<select id="report">
+					<option value="1">AgencyA</option>
+					<option value="2">AgencyB</option>
+					<option value="3">AgencyC</option>
+				</select><br><br>
+				Time Period:<br>
+				Start Time:
+				<input type="date">
+				<input type="time"><br>
+				End Time:
+				<input type="date">
+				<input type="time"><br>
+				
+				<input type="submit" value="Generate"onclick=#0>
+			</p>
+		</li>
+
+		<li id='aboutPanel'data-content="About">
+			<p>
+			TODO
+			</p>
+
+		</li>
+
+		<li id='contactPanel'data-content="Contact">
+			<p>
+				Please contact the GTFT-ride project development team with any questions or comments on the ridership data standard or any of the WebHub tools 
+				<a href='mailto:david.porter@oregonstate.edu,hooversy@oregonstate.edu,carletop@oregonstate.edu,fieldsbe@oregonstate.edu'>here</a>. 
+			</p>
+
+		</li>
+	</ul> <!-- cd-tabs-content -->
+</div> <!-- cd-tabs -->
+
+<script src="resources/js/jquery-2.1.1.js"></script>
+<script src="resources/js/main.js"></script> <!-- Resource jQuery -->
+<script src="resources/js/jszip.js"></script>
+<script src="resources/js/fileloading.js"></script>
+<script src="resources/js/questions.js"></script>
+
+</div>
+<footer class="footer"><p>Copyright &copy; 2017 Oregon Department of Transportation (ODOT)</p></footer>
+</body>
+
+
+</html>

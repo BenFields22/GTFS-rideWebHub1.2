@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<title>Data Upload</title>
+<link rel="stylesheet" href="resources/css/dataUpload.css">
+<link rel="stylesheet" href="resources/css/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="resources/css/style.css"> <!-- Resource style -->
+
+<script src="resources/js/jquery.1.9.1.min.js"></script>
+
+<script src="resources/js/vendor/jquery.ui.widget.js"></script>
+<script src="resources/js/jquery.iframe-transport.js"></script>
+<script src="resources/js/jquery.fileupload.js"></script>
+<script src="resources/js/modernizr.js"></script> <!-- Modernizr -->
+
+
+
+
+<!-- bootstrap just to have good looking page -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<link href="bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
+
+<!-- we code these -->
+
+
+
+<!-- header style ignore it -->
+
+<link href="resources/css/style.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<header>
+	<img src="resources/img/odotlogo.png">
+	<h1>Data Upload</h1>
+</header>
+<div class="cd-tabs">
+	<nav>
+		<ul class="cd-tabs-navigation">
+			<li><a data-content="load" class="selected" href="#0">Load</a></li>
+			<li><a data-content="edit" href="#0">Edit</a></li>
+			<li><a data-content="create" href="#0">Create</a></li>
+			<li><a data-content="finish" href="#0">Finish</a></li>
+		</ul> <!-- cd-tabs-navigation -->
+	</nav>
+
+	<ul class="cd-tabs-content">
+		<li id='load' data-content="load" class="selected">
+			
+			<p>
+			<input id="fileupload" type="file" name="files[]" data-url="upload" multiple>
+			
+			  <div id="progress" class="progress">
+		    	<div class="bar" style="width: 0%;"></div>
+			</div>
+			<h5 style="text-align:center"><i style="color:#ccc"><small>Test Note</small></i></h5>
+		
+			<table id="uploaded-files" class="table">
+				<tr>
+					<th>File Name</th>
+					<th>File Size</th>
+					<th>File Type</th>
+				</tr>
+			</table>
+			<input type="submit" value="Home" onclick="checkExit()">
+			</p>
+			
+		</li>
+
+		<li id='edit'data-content="edit">
+			<p>
+			<p id="editOptions">No Files have been loaded</p>
+			
+			<div id="editarea" class="hidden">
+			<h1 id="filename"></h1>
+			<div id="edit2"></div>
+			<input id="saveButton" type="submit" value="Save">
+			<input type="submit" onclick="hideEdit()" value="Close">
+			</div>	<br>
+			 <input type="submit" value="Home" onclick="checkExit()">
+			 <p id="saved" class="hidden"></p>
+			</p>
+		</li>
+
+		<li id='create' data-content="create">
+			
+			<table id="create_table" class="table">
+				<tr>
+					<th>File Name</th>
+					<th>Create Button</th>
+				</tr>
+				<tr id="board_alightC">
+					<td>Board_alight.txt</td>
+					<td><input type="submit" value="Create" onclick="showSection(5)"></td>
+				</tr>
+				<tr id="trip_capacityC">
+					<td>trip_capacity.txt</td>
+					<td><input type="submit" value="Create" onclick="showSection(4)"></td>
+				</tr>
+				<tr id="rider_tripC">
+					<td>rider_trip.txt</td>
+					<td><input type="submit" value="Create" onclick="showSection(3)"></td>
+				</tr>
+				<tr id="ridershipC">
+					<td>ridership.txt</td>
+					<td><input type="submit" value="Create" onclick="showSection(2)"></td>
+				</tr>
+				<tr id="ride_feed_infoC">
+					<td>ride_feed_info.txt</td>
+					<td><input type="submit" value="Create" onclick="showSection(1)"></td>
+				</tr>
+			</table>
+			
+			<div id="board_alight" class="hidden">
+				board alight: Please provide a .csv file named board_alight.csv with a selection of the following column headers.<strong>Red columns must be present</strong>:<br>
+				<br>Please check the column headers you have in your file<br>
+				<br>For a description of each column header please referenece the data standard <a target=# href="https://github.com/ODOT-PTS/GTFS-ride/blob/master/spec/en/reference.md">Here</a><br>
+				<br> 
+  					<input type="checkbox" name="column1" value="trip_id" checked> <strong>trip_id</strong><br>
+  					<input type="checkbox" name="column1" value="stop_id" checked> <strong>stop_id</strong><br>
+  					<input type="checkbox" name="column1" value="stop_sequence" checked> <strong>stop_sequence</strong><br>
+					<input type="checkbox" name="column1" value="record_use" checked> <strong>record_use</strong><br>
+					<input type="checkbox" name="column1" value="schedule_relationship"> schedule_relationship<br>
+  					<input type="checkbox" name="column1" value="boardings">boardings<br>
+  					<input type="checkbox" name="column1" value="alightings">alightings<br>
+  					<input type="checkbox" name="column1" value="current_load">current_load<br>
+  					<input type="checkbox" name="column1" value="load_type">load_type<br>
+  					<input type="checkbox" name="column1" value="rack_down">rack_down<br>
+  					<input type="checkbox" name="column1" value="bike_boardings">bike_boardings<br>
+  					<input type="checkbox" name="column1" value="bike_alightings">bike_alightings<br>
+  					<input type="checkbox" name="column1" value="ramp_used">ramp_used<br>
+  					<input type="checkbox" name="column1" value="ramp_boardings">ramp_boardings<br>
+  					<input type="checkbox" name="column1" value="ramp_alightings">ramp_alightings<br>
+  					<input type="checkbox" name="column1" value="service_date">service_date<br>
+  					<input type="checkbox" name="column1" value="service_arrival_time">service_arrival_time<br>
+  					<input type="checkbox" name="column1" value="service_departure_time">service_departure_time<br>
+  					<input type="checkbox" name="column1" value="source">source<br>
+  					<input type="file" name="file1" id="fileUploader"/>
+  					<input type="submit" value="Upload" onclick="CheckFile(1)">
+				
+				<br><input type="submit" value="Close" onclick="hideSection(5)"> 
+			</div>
+			
+			<div id="trip_capacity" class="hidden">
+				trip capacity: Please provide a .csv file named trip_capacity.csv with a selection of the following column headers. <strong>Red columns must be present</strong>:<br>
+				<br>Please check the column headers you have in your file<br>
+				<br>For a description of each column header please referenece the data standard <a target=# href="https://github.com/ODOT-PTS/GTFS-ride/blob/master/spec/en/reference.md">Here</a><br>
+				<br>
+				
+					<input type="checkbox" name="column2" value="agency_id">agency_id<br>
+					<input type="checkbox" name="column2" value="trip_id">trip_id<br>
+					<input type="checkbox" name="column2" value="service_date">service_date<br>
+					<input type="checkbox" name="column2" value="vehicle_description">vehicle_description<br>
+					<input type="checkbox" name="column2" value="seated_capacity">seated_capacity<br>
+					<input type="checkbox" name="column2" value="standing_capacity">standing_capacity<br>
+					<input type="checkbox" name="column2" value="wheelchair_capacity">wheelchair_capacity<br>
+					<input type="checkbox" name="column2" value="bike_capacity">bike_capacity <br>
+  					<input type="file" name="file2" id="fileUploader"/>
+  					<input type="submit" value="Upload" onclick="CheckFile(2)">
+				<br>
+				<br><input type="submit" value="Close" onclick="hideSection(4)"> 
+			</div>
+			
+			<div id="createRider_Trip" class="hidden">
+				rider_trip: Please provide a .csv file named rider_trip.csv with a selection of the following column headers. <strong>Red columns must be present</strong>:<br>
+				<br>Please check the column headers you have in your file<br>
+				<br>For a description of each column header please referenece the data standard <a target=# href="https://github.com/ODOT-PTS/GTFS-ride/blob/master/spec/en/reference.md">Here</a><br>
+				<br>
+					<input type="checkbox" name="column3" value="rider_id" checked><strong>rider_id</strong><br>
+					<input type="checkbox" name="column3" value="agency_id">agency_id<br>
+					<input type="checkbox" name="column3" value="trip_id">trip_id<br>
+					<input type="checkbox" name="column3" value="boarding_stop_id">boarding_stop_id<br>
+					<input type="checkbox" name="column3" value="boarding_stop_sequence">boarding_stop_sequence<br>
+					<input type="checkbox" name="column3" value="alighting_stop_id">alighting_stop_id<br>
+					<input type="checkbox" name="column3" value="alighting_stop_sequence">alighting_stop_sequence<br>
+					<input type="checkbox" name="column3" value="service_date">service_date<br>
+					<input type="checkbox" name="column3" value="boarding_time">boarding_time<br>
+					<input type="checkbox" name="column3" value="alighting_time">alighting_time<br>
+					<input type="checkbox" name="column3" value="rider_type">rider_type<br>
+					<input type="checkbox" name="column3" value="rider_type_description">rider_type_description<br>
+					<input type="checkbox" name="column3" value="fare_paid">fare_paid<br>
+					<input type="checkbox" name="column3" value="transaction_type">transaction_type<br>
+					<input type="checkbox" name="column3" value="fare_media">fare_media<br>
+					<input type="checkbox" name="column3" value="accompanying_device">accompanying_device<br>
+					<input type="checkbox" name="column3" value="transfer_status">transfer_status <br>
+					
+  					<input type="file" name="file3" id="fileUploader"/>
+  					<input type="submit" value="Upload" onclick="CheckFile(3)">
+				<br>
+				<br><input type="submit" value="Close" onclick="hideSection(3)"> 
+			</div>
+			
+			<div id="createRidership" class="hidden">
+				Ridership: Please provide a .csv file named ridership,csv with a selection of the following column headers. <strong>Red columns must be present</strong>:<br>
+				<br>Please check the column headers you have in your file<br>
+				<br>For a description of each column header please referenece the data standard <a target=# href="https://github.com/ODOT-PTS/GTFS-ride/blob/master/spec/en/reference.md">Here</a><br>
+				<br>
+					<input type="checkbox" name="column4" value="total_boardings" checked><strong>total_boardings</strong><br>
+					<input type="checkbox" name="column4" value="total_alightings" checked><strong>total_alightings</strong><br>
+					<input type="checkbox" name="column4" value="ridership_start_date" checked><strong>ridership_start_date</strong><br>
+					<input type="checkbox" name="column4" value="ridership_end_date" checked><strong>ridership_end_date</strong><br>
+					<input type="checkbox" name="column4" value="ridership_start_time" >ridership_start_time<br>
+					<input type="checkbox" name="column4" value="ridership_end_time" >ridership_end_time<br>
+					<input type="checkbox" name="column4" value="service_id" >service_id<br>
+					<input type="checkbox" name="column4" value="monday" >monday<br>
+					<input type="checkbox" name="column4" value="tuesday" >tuesday<br>
+					<input type="checkbox" name="column4" value="wednesday" >wednesday<br>
+					<input type="checkbox" name="column4" value="thursday" >thursday<br>
+					<input type="checkbox" name="column4" value="friday" >friday<br>
+					<input type="checkbox" name="column4" value="saturday" >saturday<br>
+					<input type="checkbox" name="column4" value="sunday" >sunday<br>
+					<input type="checkbox" name="column4" value="agency_id" >agency_id<br>
+					<input type="checkbox" name="column4" value="route_id" >route_id<br>
+					<input type="checkbox" name="column4" value="direction_id" >direction_id<br>
+					<input type="checkbox" name="column4" value="trip_id" >trip_id<br>
+					<input type="checkbox" name="column4" value="stop_id" >stop_id <br>
+					
+  					<input type="file" name="file4" id="fileUploader"/>
+  					<input type="submit" value="Upload" onclick="CheckFile(4)">
+				<br>
+				<br><input type="submit" value="Close" onclick="hideSection(2)"> 
+			</div>
+			
+			<div id="createRideFeedInfo" class="hidden">
+				Ride_feed_info: Please provide a .csv file named ride_feed_info.csv with a selection of the following column headers. <strong>Red columns must be present</strong>:<br>
+				<br>Please check the column headers you have in your file<br>
+				<br>For a description of each column header please referenece the data standard <a target=# href="https://github.com/ODOT-PTS/GTFS-ride/blob/master/spec/en/reference.md">Here</a><br>
+				
+				<br>
+					<input type="checkbox" name="column5" value="ride_files" checked><strong>ride_files</strong><br>
+					<input type="checkbox" name="column5" value="ride_start_date">ride_start_date<br>
+					<input type="checkbox" name="column5" value="ride_end_date">ride_end_date<br>
+					<input type="checkbox" name="column5" value="gtfs_feed_date">gtfs_feed_date<br>
+					<input type="checkbox" name="column5" value="default_currency_type">default_currency_type<br>
+					<input type="checkbox" name="column5" value="ride_feed_version">ride_feed_version<br>					
+  					<input type="file" name="file5" id="fileUploader"/>
+  					<input type="submit" value="Upload" onclick="CheckFile(5)">
+				<br>
+				<br><input type="submit" value="Close" onclick="hideSection(1)"> 
+			</div>
+			
+		</li>
+
+		<li id='Finish'data-content="finish">
+			<p>
+			<div id="fileChecklist">
+			<h2>Progress</h2>
+			<div id="filelist">No files have been loaded</div>
+			</div>
+			<button>Upload to Database</button> <button type='button' id='exportButton'>Zip</button><br>
+			<input type="submit" value="Home" onclick="checkExit()">
+			<div id="uploadClick"></div>
+			</p>
+		</li>
+
+	</ul> <!-- cd-tabs-content -->
+</div> <!-- cd-tabs -->
+
+<!--  <script src="resources/js/jquery-2.1.1.js"></script>-->
+<script src="resources/js/main.js"></script> <!-- Resource jQuery -->
+<script src="resources/js/myuploadfunction.js"></script>
+<script src="resources/js/utils.js"></script> 
+<footer class="footer"><p>Copyright &copy; 2017 Oregon Department of Transportation (ODOT)</p></footer>
+</body>
+</html>
