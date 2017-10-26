@@ -52,31 +52,47 @@ function updateChecklist(){
 	xhr2.send(null);
 }
 
-$('#fileUploader').on('change', uploadFile);
+$('#fileUploader1').on('change', uploadFile);
+$('#fileUploader2').on('change', uploadFile);
+$('#fileUploader3').on('change', uploadFile);
+$('#fileUploader4').on('change', uploadFile);
+$('#fileUploader5').on('change', uploadFile);
+
 
 
 function CheckFile(num){
 	if(num==1){
 		var tags = document.getElementsByName('column1');
+		var check = document.getElementById("fileUploader1").value.split(/(\\|\/)/g).pop();
 		var name = "board_alight.csv"
+		document.getElementById("fileUploader1").value = "";
 	}
 	if(num==2){
 		var tags = document.getElementsByName('column2');
-		var name = "trip_capacity.csv"
+		var name = "trip_capacity.csv";
+		var check = document.getElementById("fileUploader2").value.split(/(\\|\/)/g).pop();
+		document.getElementById("fileUploader2").value = "";
 	}
 	if(num==3){
 		var tags = document.getElementsByName('column3');
-		var name = "rider_trip.csv"
+		var name = "rider_trip.csv";
+		var check = document.getElementById("fileUploader3").value.split(/(\\|\/)/g).pop();
+		document.getElementById("fileUploader3").value = "";
 	}
 	if(num==4){
 		var tags = document.getElementsByName('column4');
-		var name = "ridership.csv"
+		var name = "ridership.csv";
+		var check = document.getElementById("fileUploader4").value.split(/(\\|\/)/g).pop();
+		document.getElementById("fileUploader4").value = "";
 	}
 	if(num==5){
 		var tags = document.getElementsByName('column5');
-		var name = "rider_feed_info.csv"
+		var name = "rider_feed_info.csv";
+		var check = document.getElementById("fileUploader5").value.split(/(\\|\/)/g).pop();
+		document.getElementById("fileUploader5").value = "";
 	}
 	console.log(name)
+	console.log(check)
 	console.log("Number of boxes is "+ tags.length);
 	var columns = ""
 	for(var i = 0;i<tags.length;i++){
@@ -91,7 +107,7 @@ function CheckFile(num){
 		url : "CheckFile",
         type: "POST",
         cache: false,
-        data:{"info":columns,"name":name},
+        data:{"info":columns,"name":name,"check":check},
         dataType: 'html',
         success : function (data) {
             alert(data)
@@ -146,14 +162,12 @@ function postFilesData(data)
         type: 'POST',
         data: data,
         cache: false,
-        dataType: 'json',
+        dataType: 'html',
         processData: false, 
         contentType: false, 
         success: function(data, textStatus, jqXHR)
         {
-        	if(data.length != 0){
-        		alert(data);
-        	}
+        	
         	
         },
         error: function(jqXHR, textStatus, errorThrown)
