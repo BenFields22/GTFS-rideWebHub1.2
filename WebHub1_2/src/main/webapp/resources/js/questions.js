@@ -18,6 +18,23 @@ $(document).ready(function(){
 	
 });
 
+function GenerateReport()
+{
+	var novoForm = window.open('DataUploadOption2.html');
+	
+	novoForm.onload = function() {
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function(){
+		if(xhr.status ===200){
+			novoForm.document.getElementById("reportContent").innerHTML = xhr.responseText;
+		}
+	}
+	
+	xhr.open('POST', 'GenerateReport',true);
+	xhr.send(null);
+	}
+}
+
 
 function checkAnswer(passForm)
 {

@@ -1,3 +1,7 @@
+window.onbeforeunload = function(){
+   // Do something
+	deleteFiles();
+}
 
 function editDocument(fileName){
 	document.getElementById("edit2").innerHTML = "";
