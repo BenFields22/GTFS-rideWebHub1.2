@@ -41,10 +41,10 @@ public class GenerateReport extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			Class.forName("org.postgresql.Driver");
-			Connection con = DriverManager.getConnection("jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/ridedb","rideadmindb","***");
+			Connection con = DriverManager.getConnection("jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/ridedb","rideadmindb","alltheridestuff");
 			if	(con.isValid(0))
 			{
-				System.out.println("Connection made");
+				System.out.println("Connection made successfully");
 			}
 			else
 			{

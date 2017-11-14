@@ -13,6 +13,17 @@ function deleteFiles(){
 	xhr1.send(null);
 }
 
+function loadIntoDB(){
+	var xhr1 = new XMLHttpRequest();
+	xhr1.onload = function(){
+		if(xhr1.status ===200){
+			document.getElementById("uploadClick").innerHTML = xhr1.responseText;
+		}
+	}
+	xhr1.open('POST','loadFeedIntoDB',true);
+	xhr1.send(null);
+}
+
 function checkExit(){
 	let ans = confirm("Are you sure you would you like to return to Home? \nAll progress will be discarded.");
 	if(ans){
