@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.HibernateException;
+import org.postgresql.copy.CopyManager;
+import org.postgresql.jdbc.PgConnection;
 
 
 
@@ -45,9 +47,9 @@ public class loadFeedIntoDB extends HttpServlet {
 		String [] args = new String[5];
 		String realPath = getServletContext().getRealPath("/");
 		args[0] = "--driverClass=\"org.postgresql.Driver\"";
-		args[1] = "--url=\"jdbc:postgresql://localhost:5432/testDB\"";
-		args[2] = "--username=\"postgres\"";
-		args[3] = "--password=\"ben\"";
+		args[1] = "--url=\"jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/testDB\"";
+		args[2] = "--username=\"rideadmindb\"";
+		args[3] = "--password=\"alltheridestuff\"";
 		args[4] = realPath+"testFolder/";
 		String fileLocation = realPath+"testFolder/";
 		
@@ -66,7 +68,7 @@ public class loadFeedIntoDB extends HttpServlet {
 		
 		try {
 			Class.forName("org.postgresql.Driver");
-			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testDB","postgres","ben");
+			Connection con = DriverManager.getConnection("jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/testDB","rideadmindb","alltheridestuff");
 			if	(con.isValid(0))
 			{
 				System.out.println("Connection for uploading ride files made successfully");
@@ -77,6 +79,12 @@ public class loadFeedIntoDB extends HttpServlet {
 			}
 			
 				Class.forName("org.postgresql.Driver");
+				String query = "ALTER USER rideadmindb WITH SUPERUSER;";
+				
+				PreparedStatement stmt = con.prepareStatement(query);
+				
+				//boolean Rs1 = stmt.execute();
+				
 				File tmpDir = new File(fileLocation+"board_alight.txt");
 				boolean exists = tmpDir.exists();
 				String text = null;
@@ -89,7 +97,7 @@ public class loadFeedIntoDB extends HttpServlet {
 					
 
 				}
-				String query = "CREATE TABLE IF NOT EXISTS board_alight("+
+				query = "CREATE TABLE IF NOT EXISTS board_alight("+
 						"trip_id text,"+
 						"stop_id text,"+
 						"stop_sequence text,"+
@@ -110,13 +118,16 @@ public class loadFeedIntoDB extends HttpServlet {
 						"service_departure_time text,"+
 						"source integer,"+
 						"PRIMARY KEY(trip_id,stop_id,stop_sequence)"+
-						");COPY board_alight("+text+") FROM '"+fileLocation+"board_alight.txt"+"' DELIMITER ',' csv header;";
+						");";
 				 
-				PreparedStatement stmt = con.prepareStatement(query);
+				stmt = con.prepareStatement(query);
 				tmpDir = new File(fileLocation+"board_alight.txt");
 				exists = tmpDir.exists();
 				if(exists){
 					boolean Rs = stmt.execute();
+					PgConnection copyOperationConnection = (PgConnection) con;
+					CopyManager copyManager = new CopyManager(copyOperationConnection);
+					copyManager.copyIn("COPY board_alight("+text+") FROM STDIN WITH DELIMITER ',' csv header", new FileReader(fileLocation+"board_alight.txt"));
 				}
 				
 				
@@ -141,13 +152,16 @@ public class loadFeedIntoDB extends HttpServlet {
 						"standing_capacity integer,"+
 						"wheelchair_capacity integer,"+
 						"bike_capacity integer"+
-						");COPY trip_capacity("+text+") FROM '"+fileLocation+"trip_capacity.txt"+"' DELIMITER ',' csv header;";
+						");";
 				
 				stmt = con.prepareStatement(query);
 				tmpDir = new File(fileLocation+"trip_capacity.txt");
 				exists = tmpDir.exists();
 				if(exists){
 					boolean Rs = stmt.execute();
+					PgConnection copyOperationConnection = (PgConnection) con;
+					CopyManager copyManager = new CopyManager(copyOperationConnection);
+					copyManager.copyIn("COPY trip_capacity("+text+") FROM STDIN WITH DELIMITER ',' csv header", new FileReader(fileLocation+"trip_capacity.txt"));
 				}
 				
 				tmpDir = new File(fileLocation+"rider_trip.txt");
@@ -181,12 +195,15 @@ public class loadFeedIntoDB extends HttpServlet {
 						"accompanying_device integer,"+
 						"transfer_status integer,"+
 						"PRIMARY KEY(rider_id)"+
-						");COPY rider_trip("+text+") FROM '"+fileLocation+"rider_trip.txt"+"' DELIMITER ',' csv header;";
+						");";
 				stmt = con.prepareStatement(query);
 				tmpDir = new File(fileLocation+"rider_trip.txt");
 				exists = tmpDir.exists();
 				if(exists){
 					boolean Rs = stmt.execute();
+					PgConnection copyOperationConnection = (PgConnection) con;
+					CopyManager copyManager = new CopyManager(copyOperationConnection);
+					copyManager.copyIn("COPY rider_trip("+text+") FROM STDIN WITH DELIMITER ',' csv header", new FileReader(fileLocation+"rider_trip.txt"));
 				}
 				
 				tmpDir = new File(fileLocation+"ridership.txt");
@@ -222,13 +239,16 @@ public class loadFeedIntoDB extends HttpServlet {
 						"trip_id text,"+
 						"stop_id text,"+
 						"PRIMARY KEY(ridership_start_date,ridership_end_date)"+
-						");COPY ridership("+text+") FROM '"+fileLocation+"ridership.txt"+"' DELIMITER ',' csv header;";
+						");";
 				
 				stmt = con.prepareStatement(query);
 				tmpDir = new File(fileLocation+"ridership.txt");
 				exists = tmpDir.exists();
 				if(exists){
 					boolean Rs = stmt.execute();
+					PgConnection copyOperationConnection = (PgConnection) con;
+					CopyManager copyManager = new CopyManager(copyOperationConnection);
+					copyManager.copyIn("COPY ridership("+text+") FROM STDIN WITH DELIMITER ',' csv header", new FileReader(fileLocation+"ridership.txt"));
 				}
 				
 				tmpDir = new File(fileLocation+"ride_feed_info.txt");
@@ -249,12 +269,15 @@ public class loadFeedIntoDB extends HttpServlet {
 						"gtfs_feed_date text,"+
 						"default_currency_type text,"+
 						"ride_feed_version text"+
-						");COPY ride_feed_info("+text+") FROM '"+fileLocation+"ride_feed_info.txt"+"' DELIMITER ',' csv header;";
+						");";
 				stmt = con.prepareStatement(query);
 				tmpDir = new File(fileLocation+"ride_feed_info.txt");
 				exists = tmpDir.exists();
 				if(exists){
 					boolean Rs = stmt.execute();
+					PgConnection copyOperationConnection = (PgConnection) con;
+					CopyManager copyManager = new CopyManager(copyOperationConnection);
+					copyManager.copyIn("COPY ride_feed_info("+text+") FROM STDIN WITH DELIMITER ',' csv header", new FileReader(fileLocation+"ride_feed_info.txt"));
 				}
 				
 			} catch (ClassNotFoundException | SQLException e) {
