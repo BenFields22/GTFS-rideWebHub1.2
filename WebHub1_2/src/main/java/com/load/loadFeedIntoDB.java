@@ -97,27 +97,27 @@ public class loadFeedIntoDB extends HttpServlet {
 					
 
 				}
+				
 				query = "CREATE TABLE IF NOT EXISTS board_alight("+
 						"trip_id text,"+
 						"stop_id text,"+
 						"stop_sequence text,"+
-						"record_use integer,"+
-						"schedule_relationship integer,"+
-						"boardings integer,"+
-						"alightings integer,"+
-						"current_load integer,"+
-						"load_type integer,"+
-						"rack_down integer,"+
-						"bike_boardings integer,"+
-						"bike_alightings integer,"+
-						"ramp_used integer,"+
-						"ramp_boardings integer,"+
-						"ramp_alightings integer,"+
+						"record_use text,"+
+						"schedule_relationship text,"+
+						"boardings text,"+
+						"alightings text,"+
+						"current_load text,"+
+						"load_type text,"+
+						"rack_down text,"+
+						"bike_boardings text,"+
+						"bike_alightings text,"+
+						"ramp_used text,"+
+						"ramp_boardings text,"+
+						"ramp_alightings text,"+
 						"service_date text,"+
 						"service_arrival_time text,"+
 						"service_departure_time text,"+
-						"source integer,"+
-						"PRIMARY KEY(trip_id,stop_id,stop_sequence)"+
+						"source text"+
 						");";
 				 
 				stmt = con.prepareStatement(query);
@@ -148,10 +148,10 @@ public class loadFeedIntoDB extends HttpServlet {
 						"trip_id text,"+
 						"service_date text,"+
 						"vehicle_description text,"+
-						"seated_capacity integer,"+
-						"standing_capacity integer,"+
-						"wheelchair_capacity integer,"+
-						"bike_capacity integer"+
+						"seated_capacity text,"+
+						"standing_capacity text,"+
+						"wheelchair_capacity text,"+
+						"bike_capacity text"+
 						");";
 				
 				stmt = con.prepareStatement(query);
@@ -187,13 +187,13 @@ public class loadFeedIntoDB extends HttpServlet {
 						"service_date text,"+
 						"boarding_time text,"+
 						"alighting_time text,"+
-						"rider_type integer,"+
+						"rider_type text,"+
 						"rider_type_description text,"+
 						"fare_paid text,"+
-						"transaction_type integer,"+
-						"fare_media integer,"+
-						"accompanying_device integer,"+
-						"transfer_status integer,"+
+						"transaction_type text,"+
+						"fare_media text,"+
+						"accompanying_device text,"+
+						"transfer_status text,"+
 						"PRIMARY KEY(rider_id)"+
 						");";
 				stmt = con.prepareStatement(query);
@@ -219,20 +219,20 @@ public class loadFeedIntoDB extends HttpServlet {
 				}
 				
 				query = "CREATE TABLE IF NOT EXISTS ridership("+
-						"total_boardings integer,"+
-						"total_alightings integer,"+
+						"total_boardings text,"+
+						"total_alightings text,"+
 						"ridership_start_date text,"+
 						"ridership_end_date text,"+
 						"ridership_start_time text,"+
 						"ridership_end_time text,"+
 						"service_id text,"+
-						"monday integer,"+
-						"tuesday integer,"+
-						"wednesday integer,"+
-						"thursday integer,"+
-						"friday integer,"+
-						"saturday integer,"+
-						"sunday integer,"+
+						"monday text,"+
+						"tuesday text,"+
+						"wednesday text,"+
+						"thursday text,"+
+						"friday text,"+
+						"saturday text,"+
+						"sunday text,"+
 						"agency_id text,"+
 						"route_id text,"+
 						"direction_id text,"+
@@ -263,8 +263,8 @@ public class loadFeedIntoDB extends HttpServlet {
 				}
 				
 				query = "CREATE TABLE IF NOT EXISTS ride_feed_info("+
-						"ride_files integer,"+
-						"ride_start_date integer,"+
+						"ride_files text,"+
+						"ride_start_date text,"+
 						"ride_end_date text,"+
 						"gtfs_feed_date text,"+
 						"default_currency_type text,"+
