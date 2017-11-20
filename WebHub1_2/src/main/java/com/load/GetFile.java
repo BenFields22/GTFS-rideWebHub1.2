@@ -52,7 +52,7 @@ public class GetFile extends HttpServlet {
 				 String value2 = request.getParameter("mname");
 				//File file = new File(FileUploadServlet.realPath+"testFolder"+getFile.getFileName());
 				 String content = new Scanner(new File(UploadServlet.realPath+"testFolder/"+value2)).useDelimiter("\\Z").next();
-				 System.out.println(content);
+				 //System.out.println(content);
 				 response.setHeader("Cache-control", "no-cache, no-store");
 				 response.setHeader("Pragma", "no-cache");
 				 response.setHeader("Expires", "-1");

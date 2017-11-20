@@ -79,7 +79,7 @@ public class CheckFile extends HttpServlet {
 		            
 		            int lineN = 1;
 		            while ((line = br.readLine()) != null) {
-		            	System.out.println("beginning of new line");
+		            	//System.out.println("beginning of new line");
 		                // use comma as separator
 		                String[] country = line.split(cvsSplitBy);
 		                int size = country.length;
@@ -94,9 +94,9 @@ public class CheckFile extends HttpServlet {
 		        			break;
 		                }
 		                for	(int i = 0; i <size;i++){
-		                	System.out.println(country[i]+ ",");
+		                	//System.out.println(country[i]+ ",");
 		                	if(lineN == 1){
-		                		System.out.println(country[i] +"|"+headers[i]);
+		                		//System.out.println(country[i] +"|"+headers[i]);
 		                		if(!country[i].equals(headers[i])){
 		                			response.setContentType("test/plain");
 		    	        			response.setCharacterEncoding("UTF-8");

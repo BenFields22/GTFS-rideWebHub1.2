@@ -95,13 +95,13 @@ function CheckFile(num){
 		var check = document.getElementById("fileUploader5").value.split(/(\\|\/)/g).pop();
 		document.getElementById("fileUploader5").value = "";
 	}
-	console.log(name)
-	console.log(check)
-	console.log("Number of boxes is "+ tags.length);
+	//console.log(name)
+	//console.log(check)
+	//console.log("Number of boxes is "+ tags.length);
 	var columns = ""
 	for(var i = 0;i<tags.length;i++){
 		if(tags[i].checked){
-			console.log(tags[i].value)
+			//console.log(tags[i].value)
 			columns = columns + tags[i].value + ","
 		}
 	}

@@ -81,6 +81,7 @@ public class GtfsDatabaseLoaderMain {
         "org.hibernate.cache.NoCacheProvider");
     config.setProperty("hibernate.hbm2ddl.auto", "update");
     config.addResource("org/mapping/GtfsMapping.hibernate.xml");
+    config.addResource("org/mapping/GtfsMapping.hibernate.xml");
     config.addResource("org/mapping/HibernateGtfsRelationalDaoImpl.hibernate.xml");
 
     SessionFactory sessionFactory = config.buildSessionFactory();

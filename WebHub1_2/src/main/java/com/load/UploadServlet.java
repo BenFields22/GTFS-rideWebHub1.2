@@ -56,6 +56,7 @@ public class UploadServlet extends HttpServlet {
 		// 1. Upload File Using Apache FileUpload
 		files.addAll(MultipartRequestHandler.uploadByApacheFileUpload(request));
 		realPath = getServletContext().getRealPath("/");
+		System.out.println("TestFolder is at"+ realPath+"testFolder/");
 		File file = new File(realPath+"testFolder");
 		//boolean success = file.mkdirs();
 		
