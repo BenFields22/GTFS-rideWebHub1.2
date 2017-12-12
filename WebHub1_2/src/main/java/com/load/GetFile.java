@@ -3,6 +3,7 @@ package com.load;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -49,16 +50,27 @@ public class GetFile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. Get f from URL upload?f="?"
 		System.out.println("Hit servlet");
-				 String value2 = request.getParameter("mname");
-				//File file = new File(FileUploadServlet.realPath+"testFolder"+getFile.getFileName());
-				 String content = new Scanner(new File(UploadServlet.realPath+"testFolder/"+value2)).useDelimiter("\\Z").next();
-				 //System.out.println(content);
-				 response.setHeader("Cache-control", "no-cache, no-store");
-				 response.setHeader("Pragma", "no-cache");
-				 response.setHeader("Expires", "-1");
-				 response.setCharacterEncoding("UTF-8");
-				 String htmlcontent = "<textarea id='areaText'>" + content +"</textarea>";
-				 response.getWriter().write(htmlcontent);			 	
+		 String value2 = request.getParameter("mname");
+		//File file = new File(FileUploadServlet.realPath+"testFolder"+getFile.getFileName());
+		 String content = "";
+		 FileReader in = new FileReader(UploadServlet.realPath+"testFolder/"+value2);
+		 BufferedReader br = new BufferedReader(in);
+		 int count = 0;
+		 String line;
+		 while ((line = br.readLine()) != null && count < 1000) {
+		     //System.out.println(line);
+		     content += line + "\n";
+		     count++;
+		 }
+		 in.close();
+		 //content = new Scanner(new File(UploadServlet.realPath+"testFolder/"+value2)).nextLine();
+		 //System.out.println(content);
+		 response.setHeader("Cache-control", "no-cache, no-store");
+		 response.setHeader("Pragma", "no-cache");
+		 response.setHeader("Expires", "-1");
+		 response.setCharacterEncoding("UTF-8");
+		 String htmlcontent = "<textarea id='areaText'>" + content +"</textarea>";
+		 response.getWriter().write(htmlcontent);			 	
 					 	
 	}
 

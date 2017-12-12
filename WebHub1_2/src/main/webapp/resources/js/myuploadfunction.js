@@ -3,14 +3,16 @@ window.onbeforeunload = function(){
 	deleteFiles();
 }
 
+var file = -1;
+
 function editDocument(fileName){
 	document.getElementById("edit2").innerHTML = "";
-	document.getElementById("filename").innerHTML = "";
+	document.getElementById("filename").innerHTML = "Loading...";
 	
 	$( '#editOptions' ).addClass( "hidden" );
 	$( '#editarea' ).removeClass( "hidden" );
+	document.getElementById("filename").innerHTML = "Loading...";
 	
-	document.getElementById("filename").innerHTML = fileName;
 	$.ajax({
         url : "GetFile",
         type: "GET",
@@ -18,6 +20,7 @@ function editDocument(fileName){
         data:{"mname":fileName},
         success : function (data) {
             $("#edit2").html(data);
+            document.getElementById("filename").innerHTML = fileName;
         }
     });
 	$('#editarea').removeClass("hidden");
@@ -66,30 +69,35 @@ $('#fileUploader5').on('change', uploadFile);
 
 function CheckFile(num){
 	if(num==1){
+		file = 1
 		var tags = document.getElementsByName('column1');
 		var check = document.getElementById("fileUploader1").value.split(/(\\|\/)/g).pop();
 		var name = "board_alight.csv"
 		document.getElementById("fileUploader1").value = "";
 	}
 	if(num==2){
+		file = 2
 		var tags = document.getElementsByName('column2');
 		var name = "trip_capacity.csv";
 		var check = document.getElementById("fileUploader2").value.split(/(\\|\/)/g).pop();
 		document.getElementById("fileUploader2").value = "";
 	}
 	if(num==3){
+		file = 3
 		var tags = document.getElementsByName('column3');
 		var name = "rider_trip.csv";
 		var check = document.getElementById("fileUploader3").value.split(/(\\|\/)/g).pop();
 		document.getElementById("fileUploader3").value = "";
 	}
 	if(num==4){
+		file = 4
 		var tags = document.getElementsByName('column4');
 		var name = "ridership.csv";
 		var check = document.getElementById("fileUploader4").value.split(/(\\|\/)/g).pop();
 		document.getElementById("fileUploader4").value = "";
 	}
 	if(num==5){
+		file = 5
 		var tags = document.getElementsByName('column5');
 		var name = "rider_feed_info.csv";
 		var check = document.getElementById("fileUploader5").value.split(/(\\|\/)/g).pop();
@@ -137,6 +145,11 @@ function CheckFile(num){
         	}
         	xhr1.open('GET','UpdateChecklist',true);
         	xhr1.send(null);
+        	$( '#uploadBoard' ).addClass( "hidden" );
+        	$( '#uploadTrip' ).addClass( "hidden" );
+        	$( '#uploadRiderTrip' ).addClass( "hidden" );
+        	$( '#uploadRiderShip' ).addClass( "hidden" );
+        	$( '#uploadRideInfo' ).addClass( "hidden" );
         	
         }
 	});
@@ -172,6 +185,11 @@ function postFilesData(data)
         success: function(data, textStatus, jqXHR)
         {
         	
+        	$( '#uploadBoard' ).removeClass( "hidden" );
+        	$( '#uploadTrip' ).removeClass( "hidden" );
+        	$( '#uploadRiderTrip' ).removeClass( "hidden" );
+        	$( '#uploadRiderShip' ).removeClass( "hidden" );
+        	$( '#uploadRideInfo' ).removeClass( "hidden" );
         	
         },
         error: function(jqXHR, textStatus, errorThrown)
