@@ -174,6 +174,11 @@ function uploadFile(event)
 	
 function postFilesData(data)
 	{
+	$( '#loadingOnServer1' ).html("Loading Onto Server...")
+	$( '#loadingOnServer2' ).html("Loading Onto Server...")
+	$( '#loadingOnServer3' ).html("Loading Onto Server...")
+	$( '#loadingOnServer4' ).html("Loading Onto Server...")
+	$( '#loadingOnServer5' ).html("Loading Onto Server...")
 	 $.ajax({
         url: 'LoadCSV',
         type: 'POST',
@@ -184,7 +189,11 @@ function postFilesData(data)
         contentType: false, 
         success: function(data, textStatus, jqXHR)
         {
-        	
+        	$( '#loadingOnServer1' ).html("")
+        	$( '#loadingOnServer2' ).html("")
+        	$( '#loadingOnServer3' ).html("")
+        	$( '#loadingOnServer4' ).html("")
+        	$( '#loadingOnServer5' ).html("")
         	$( '#uploadBoard' ).removeClass( "hidden" );
         	$( '#uploadTrip' ).removeClass( "hidden" );
         	$( '#uploadRiderTrip' ).removeClass( "hidden" );
