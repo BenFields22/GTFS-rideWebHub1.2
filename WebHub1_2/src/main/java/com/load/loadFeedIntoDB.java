@@ -214,8 +214,6 @@ public class loadFeedIntoDB extends HttpServlet {
 					text = brTest.readLine();
 					// Stop. text is the first line.
 					System.out.println(text);
-					
-
 				}
 				
 				query = "CREATE TABLE IF NOT EXISTS ridership("+

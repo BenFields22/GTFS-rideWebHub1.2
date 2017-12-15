@@ -32,6 +32,44 @@ function GenerateReport()
 	xhr.send(null);*/ 
 	
 	var selection = $( "select#report option:checked" ).val();
+	//var $j = jQuery.noConflict();
+	//$j("#datepicker").datepicker();
+	var date = $("#datePickerS").datepicker().val();
+	var date2 = $("#datePickerE").datepicker().val();
+	var time = $("#timePickerS").val();
+	var time2 = $("#timePickerE").val();
+	var agg = $("select#reportAggregation option:checked" ).val();
+	var agency = $( "select#reportAgency option:checked" ).val();
+	if(agency == 1)
+	{
+		agency = "RVTD"
+	}
+	if(agency == 2)
+	{
+		agency = "Union County"
+	}
+	if(agency == 3)
+	{
+		agency = "LTD"
+	}
+	
+	if(agg == 1)
+		{
+		 agg = "system"
+		}
+	if(agg == 2)
+	{
+	 agg = "route"
+	}
+	if(agg == 3)
+	{
+	 agg = "stop"
+	}
+	
+	if(agg == 4)
+	{
+	 agg = "trip"
+	}
 	
 	console.log(selection)
 	var docDefinition
@@ -62,15 +100,23 @@ function GenerateReport()
 						,
 				    		{text: 'Aggregate Ridership Report', fontSize: 18, bold: true, style: 'header',margin: [0, 0, 0, 10],alignment:'center'},
 				    		{text: 'GTFS-ride WebHub Report Generation 2017', fontSize: 12, bold: false, style: 'footer',margin: [0, 10, 0, 20],alignment:'center'},
+				    		{text: 'Agency:'+agency },
+				    		{text: 'Start Date:'+ date },
+				    		{text: 'Start Time:'+time },
+				    		{text: 'End Date:'+ date2 },
+				    		{text: 'End Time:'+time2},
+				    		{text: 'Aggregation Level:'+ agg},
+				    		{text: 'Ridership Data:',margin: [0,20,0,10]},
+				    		
 				    		{
 				    			style: 'tableExample',
 				    			table: {
-				    				alignment: 'center',
+				    				alignment: 'center',margin: [0,20,0,0],
 				    				body: [
 				    					['Total Ridership', 'Boardings', 'Alightings','Arrival Loads','Number of Records'],
 				    					['NULL', 'NULL', 'NULL','NULL','NULL']
 				    				]
-				    			}
+				    			},
 				    		}
 				    		
 				    		]

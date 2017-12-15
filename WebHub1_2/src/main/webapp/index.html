@@ -9,7 +9,8 @@
 	<link rel="stylesheet" href="resources/css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="resources/css/style.css"> <!-- Resource style -->
 	<script src="resources/js/modernizr.js"></script> <!-- Modernizr -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
   	<script src='resources/js/PDFMake/pdfmake.min.js'></script>
  	<script src='resources/js/PDFMake/vfs_fonts.js'></script>
 	<title>GTFS-ride WebHub</title>
@@ -73,24 +74,25 @@
 					<option value="3">Density Report</option>
 				</select><br>
 				Aggregation Level:
-				<select id="report">
+				<select id="reportAggregation">
 					<option value="1">System</option>
 					<option value="2">Route</option>
 					<option value="3">Stop</option>
+					<option value="4">Trip</option>
 				</select><br>
 				Agency:
-				<select id="report">
-					<option value="1">AgencyA</option>
-					<option value="2">AgencyB</option>
-					<option value="3">AgencyC</option>
+				<select id="reportAgency">
+					<option value="1">RVTD</option>
+					<option value="2">Union County</option>
+					<option value="3">LTD</option>
 				</select><br><br>
 				Time Period:<br>
 				Start Time:
-				<input type="date">
-				<input type="time"><br>
+				<input id="datePickerS" type="date">
+				<input id ="timePickerS" type="time"><br>
 				End Time:
-				<input type="date">
-				<input type="time"><br>
+				<input id="datePickerE" type="date">
+				<input id ="timePickerE" type="time"><br>
 				
 				<input type="submit" value="Generate"onclick="GenerateReport()">
 			</p>
@@ -113,7 +115,7 @@
 	</ul> <!-- cd-tabs-content -->
 </div> <!-- cd-tabs -->
 
-<script src="resources/js/jquery-2.1.1.js"></script>
+<!--<script src="resources/js/jquery-2.1.1.js"></script>-->
 <script src="resources/js/main.js"></script> <!-- Resource jQuery -->
 <script src="resources/js/jszip.js"></script>
 <script src="resources/js/fileloading.js"></script>

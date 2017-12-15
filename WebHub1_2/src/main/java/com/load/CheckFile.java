@@ -96,7 +96,7 @@ public class CheckFile extends HttpServlet {
 		                for	(int i = 0; i <size;i++){
 		                	//System.out.println(country[i]+ ",");
 		                	if(lineN == 1){
-		                		//System.out.println(country[i] +"|"+headers[i]);
+		                		System.out.println(country[i] +"|"+headers[i]);
 		                		if(!country[i].equals(headers[i])){
 		                			response.setContentType("test/plain");
 		    	        			response.setCharacterEncoding("UTF-8");
