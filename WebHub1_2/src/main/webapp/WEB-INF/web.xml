@@ -95,7 +95,6 @@
     <servlet-name>GenerateReport</servlet-name>
     <url-pattern>/GenerateReport</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>loadFeedIntoDB</servlet-name>
     <servlet-class>com.load.loadFeedIntoDB</servlet-class>
@@ -104,6 +103,15 @@
   <servlet-mapping>
     <servlet-name>loadFeedIntoDB</servlet-name>
     <url-pattern>/loadFeedIntoDB</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetReportData</servlet-name>
+    <servlet-class>com.report.GetReportData</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReportData</servlet-name>
+    <url-pattern>/GetReportData</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
