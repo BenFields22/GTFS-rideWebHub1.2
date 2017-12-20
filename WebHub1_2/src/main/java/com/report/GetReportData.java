@@ -38,6 +38,11 @@ public class GetReportData extends HttpServlet {
 		
 		String aggreg = request.getParameter("aggreg");
 		String agency = request.getParameter("agcy");
+		String startDate = request.getParameter("StartDate");
+		String endDate = request.getParameter("EndDate");
+		String startTime = request.getParameter("StartTime");
+		String endTime = request.getParameter("EndTime");
+		
 		System.out.println("aggregation: "+aggreg);
 		System.out.println("agency: "+agency);
 		
@@ -55,9 +60,9 @@ public class GetReportData extends HttpServlet {
 					System.out.println("Connection failed");
 				}
 					Class.forName("org.postgresql.Driver");
-					String query = "select agency,sum(boardings::integer) from board_alight where boardings != '0' and boardings != 'NULL' and agency = '"+agency+"' group by agency";
-					String query2 = "select agency,sum(alightings::integer) from board_alight where alightings != '0' and alightings != 'NULL' and agency = '"+agency+"' group by agency";
-					String query3 = "select count(*) from board_alight where agency = '"+agency+"'";
+					String query = "select agency,sum(boardings::integer) from board_alight where service_arrival_time::time <= time '"+endTime+"' and service_arrival_time::time >= time '"+startTime+"' and service_date::date >= '"+startDate+"' and service_date::date <= date '"+endDate+"' and boardings != '0' and boardings != 'NULL' and agency = '"+agency+"' group by agency";
+					String query2 = "select agency,sum(alightings::integer) from board_alight where service_arrival_time::time <= time '"+endTime+"' and service_arrival_time::time >= time '"+startTime+"' and service_date::date >= '"+startDate+"' and service_date::date <= date '"+endDate+"' and alightings != '0' and alightings != 'NULL' and agency = '"+agency+"' group by agency";
+					String query3 = "select count(*) from board_alight where service_arrival_time::time <= time '"+endTime+"' and service_arrival_time::time >= time '"+startTime+"' and service_date::date >= '"+startDate+"' and service_date::date <= date '"+endDate+"' and agency = '"+agency+"'";
 
 					//String query = "SELECT trip_id, sum(boardings::integer), sum(alightings::integer) FROM board_alight WHERE boardings ~ E'^\\d+$' and alightings ~ E'^\\d+$' group by trip_id;";
 					PreparedStatement stmt = con.prepareStatement(query);
@@ -127,7 +132,7 @@ public class GetReportData extends HttpServlet {
 				System.out.println("Connection failed");
 			}
 				Class.forName("org.postgresql.Driver");
-				String query = "select trip_id,sum(boardings::integer), sum(alightings::integer),count(*) from board_alight where boardings != 'NULL' and alightings != 'NULL' and agency = 'RVTD' group by trip_id order by trip_id";
+				String query = "select trip_id,sum(boardings::integer), sum(alightings::integer),count(*) from board_alight where service_arrival_time::time <= time '"+endTime+"' and service_arrival_time::time >= time '"+startTime+"' and service_date::date >= '"+startDate+"' and service_date::date <= date '"+endDate+"' and boardings != 'NULL' and alightings != 'NULL' and agency = 'RVTD' group by trip_id order by trip_id";
 
 				//String query = "SELECT trip_id, sum(boardings::integer), sum(alightings::integer) FROM board_alight WHERE boardings ~ E'^\\d+$' and alightings ~ E'^\\d+$' group by trip_id;";
 				PreparedStatement stmt = con.prepareStatement(query);
@@ -183,7 +188,7 @@ public class GetReportData extends HttpServlet {
 				System.out.println("Connection failed");
 			}
 				Class.forName("org.postgresql.Driver");
-				String query = "select stop_id,sum(boardings::integer), sum(alightings::integer),count(*) from board_alight where boardings != 'NULL' and alightings != 'NULL' and agency = 'RVTD' group by stop_id order by stop_id";
+				String query = "select stop_id,sum(boardings::integer), sum(alightings::integer),count(*) from board_alight where service_arrival_time::time <= time '"+endTime+"' and service_arrival_time::time >= time '"+startTime+"' and service_date::date >= '"+startDate+"' and service_date::date <= date '"+endDate+"' and boardings != 'NULL' and alightings != 'NULL' and agency = 'RVTD' group by stop_id order by stop_id";
 
 				//String query = "SELECT trip_id, sum(boardings::integer), sum(alightings::integer) FROM board_alight WHERE boardings ~ E'^\\d+$' and alightings ~ E'^\\d+$' group by trip_id;";
 				PreparedStatement stmt = con.prepareStatement(query);

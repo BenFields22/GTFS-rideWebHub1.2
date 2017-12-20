@@ -1,3 +1,8 @@
+document.getElementById("datePickerS").defaultValue = "2017-01-02";
+document.getElementById("datePickerE").defaultValue = "2017-01-03";
+document.getElementById("timePickerS").defaultValue = "12:00";
+document.getElementById("timePickerE").defaultValue = "14:00";
+
 var answer;
 var fileEdit;
 var def = '<p>Please Select the option that best describes your data:<br>\
@@ -79,7 +84,7 @@ function GenerateReport()
 	       url:'GetReportData',
 	       type:'post',
 	       cache:false,
-	       data:{"aggreg":agg, "agcy":agency,"StartData":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
+	       data:{"aggreg":agg, "agcy":agency,"StartDate":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
 	       async:false,
 	       success:function(data){
 	          //alert(data);
