@@ -94,7 +94,8 @@ public class GetReportData extends HttpServlet {
 					}
 					
 					System.out.println("sum is " +sum);
-					String selector = sum.toString()+ " , "+alightings.toString()+ " , "+records.toString();
+					String selector = "<tr><td>"+sum.toString()+ " </td><td> "+alightings.toString()+ " </td><td> "+records.toString()+"</td>";
+					selector+="</tr>";
 					System.out.println(selector);
 					response.setContentType("test/plain");
 					response.setCharacterEncoding("UTF-8");
@@ -109,7 +110,7 @@ public class GetReportData extends HttpServlet {
 		
 	if(aggreg.equals("route"))
 	{
-		String selector = "'null','null','null'";
+		String selector = "<tr><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td></tr>";
 		response.setContentType("test/plain");
 		response.setCharacterEncoding("UTF-8");
 		//response.getWriter().write("testing from servlet");
@@ -147,16 +148,13 @@ public class GetReportData extends HttpServlet {
 				int track = -1;
 				int countV = 0;
 				while (Rs.next()) {
-					if(track != -1)
-					{
-						content += "\n";
-					}
+					
 					String id = Rs.getString(1);
 					Integer boardings = Rs.getInt(2);
 					Integer alightings = Rs.getInt(3);
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content +id+" , "+boardings.toString()+" , "+alightings.toString()+" , "+records.toString();
+					content = content +"<tr><td>" +id+"</td><td>"+boardings.toString()+"</td><td>"+alightings.toString()+"</td><td>"+records.toString()+"</td></tr>";
 					track++;
 					countV++;
 				    
@@ -203,16 +201,12 @@ public class GetReportData extends HttpServlet {
 				int track = -1;
 				int countV = 0;
 				while (Rs.next()) {
-					if(track != -1)
-					{
-						content += "\n";
-					}
 					String id = Rs.getString(1);
 					Integer boardings = Rs.getInt(2);
 					Integer alightings = Rs.getInt(3);
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content +id+" , "+boardings.toString()+" , "+alightings.toString()+" , "+records.toString();
+					content = content + "<tr><td>"+id+"</td><td>"+boardings.toString()+"</td><td>"+alightings.toString()+"</td><td>"+records.toString() +"</td></tr>";
 					track++;
 					countV++;
 				    
