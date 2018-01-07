@@ -113,6 +113,15 @@
     <servlet-name>GetReportData</servlet-name>
     <url-pattern>/GetReportData</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>GetReportDataPerformance</servlet-name>
+    <servlet-class>com.report.GetReportDataPerformance</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReportDataPerformance</servlet-name>
+    <url-pattern>/GetReportDataPerformance</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>

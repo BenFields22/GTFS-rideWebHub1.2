@@ -15,6 +15,7 @@ var agency = window.opener.document.getElementById("reportAgency").value
 console.log(agency);
 console.log(agg);
 console.log(date);
+console.log(selection);
 
 if(agency == 1)
 {
@@ -48,24 +49,71 @@ if(agg == 4)
 }
 var bodycontent;
 
-$.ajax({
-       url:'GetReportData',
-       type:'post',
-       cache:false,
-       data:{"aggreg":agg, "agcy":agency,"StartDate":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
-       async:false,
-       success:function(data){
-          //alert(data);
-          bodyContent = data;
-          
-       },
-       error:function(){
-         alert('error when getting report content');
-       }
-    }
-    
-);
-$('#aggregateReportContent').html(bodyContent);
+if(selection == 1)
+{
+	$.ajax({
+	       url:'GetReportData',
+	       type:'post',
+	       cache:false,
+	       data:{"select":selection,"aggreg":agg, "agcy":agency,"StartDate":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
+	       async:false,
+	       success:function(data){
+	          //alert(data);
+	          bodyContent = data;
+	          
+	       },
+	       error:function(){
+	         alert('error when getting report content');
+	       }
+	    }
+	    
+	);
+	$('#aggregateReportContent').html(bodyContent);
+}
+
+if(selection == 2)
+{
+	$.ajax({
+	       url:'GetReportDataPerformance',
+	       type:'post',
+	       cache:false,
+	       data:{"select":selection,"aggreg":agg, "agcy":agency,"StartDate":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
+	       async:false,
+	       success:function(data){
+	          //alert(data);
+	          bodyContent = data;
+	          
+	       },
+	       error:function(){
+	         alert('error when getting report content');
+	       }
+	    }
+	    
+	);
+	$('#performanceReportContent').html(bodyContent);
+}
+
+if(selection == 3)
+{
+	$.ajax({
+	       url:'GetReportDataDensity',
+	       type:'post',
+	       cache:false,
+	       data:{"select":selection,"aggreg":agg, "agcy":agency,"StartDate":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
+	       async:false,
+	       success:function(data){
+	          //alert(data);
+	          bodyContent = data;
+	          
+	       },
+	       error:function(){
+	         alert('error when getting report content');
+	       }
+	    }
+	    
+	);
+	$('#aggregateReportContent').html(bodyContent);
+}
 
 $(document).ready(function() {
 	
@@ -75,8 +123,22 @@ $(document).ready(function() {
 	        "info":     false,
 	        "searching": false
 	} );
-	$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
-	$('#aggregateReportContent').html(bodyContent);
+	if(selection == 1)
+	{
+		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
+		$('#aggregateReportContent').html(bodyContent);
+	}
+	if(selection == 2)
+	{
+		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
+		$('#performanceReportContent').html(bodyContent);
+	}
+	if(selection == 3)
+	{
+		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
+		$('#aggregateReportContent').html(bodyContent);
+	}
+	
 } );
 
 

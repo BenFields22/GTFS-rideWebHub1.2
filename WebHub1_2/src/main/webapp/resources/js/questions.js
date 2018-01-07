@@ -52,28 +52,57 @@ function GenerateReport()
 	{
 		agency = "LTD"
 	}
-	
-	if(agg == 1)
+	if(selection == 1)
+	{
+		if(agg == 1)
 		{
-		 agg = "system"
-		window.open("../../AggregateRidershipSystem.html");
+			agg = "system"
+				window.open("../../AggregateRidershipSystem.html");
 		}
-	if(agg == 2)
-	{
-	 agg = "route";
-	 window.open("../../AggregateRidershipRoute.html");
-	}
-	if(agg == 3)
-	{
-	 agg = "stop";
-	 window.open("../../AggregateRidershipStop.html");
+		if(agg == 2)
+		{
+			agg = "route";
+			window.open("../../AggregateRidershipRoute.html");
+		}
+		if(agg == 3)
+		{
+			agg = "stop";
+			window.open("../../AggregateRidershipStop.html");
+		}
+		
+		if(agg == 4)
+		{
+			agg = "trip";
+			window.open("../../AggregateRidershipTrip.html");
+		}
 	}
 	
-	if(agg == 4)
+	if(selection == 2)
 	{
-	 agg = "trip";
-	 window.open("../../AggregateRidershipTrip.html");
+		if(agg == 1)
+		{
+			agg = "system"
+			window.open("../../PerformanceSystem.html");
+		}
+		if(agg == 2)
+		{
+			agg = "route";
+			window.open("../../PerformanceRoute.html");
+		}
+		if(agg == 3)
+		{
+			agg = "stop";
+			window.open("../../PerformanceStop.html");
+		}
+		
+		if(agg == 4)
+		{
+			agg = "trip";
+			window.open("../../PerformanceTrip.html");
+		}
+		
 	}
+	
 	
 	
 	
