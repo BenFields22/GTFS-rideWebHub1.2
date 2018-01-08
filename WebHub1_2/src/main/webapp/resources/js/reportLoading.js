@@ -95,7 +95,7 @@ if(selection == 2)
 
 if(selection == 3)
 {
-	$.ajax({
+	/*$.ajax({
 	       url:'GetReportDataDensity',
 	       type:'post',
 	       cache:false,
@@ -112,32 +112,41 @@ if(selection == 3)
 	    }
 	    
 	);
-	$('#aggregateReportContent').html(bodyContent);
+	$('#densityReportContent').html(bodyContent);*/
 }
 
 $(document).ready(function() {
 	
-	$('#example').DataTable( {
+	
+	if(selection == 1)
+	{
+		$('#example').DataTable( {
 	        "paging":   false,
 	        "ordering": false,
 	        "info":     false,
 	        "searching": false
 	} );
-	if(selection == 1)
-	{
 		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
 		$('#aggregateReportContent').html(bodyContent);
 	}
 	if(selection == 2)
 	{
+		$('#example').DataTable( {
+	        "paging":   false,
+	        "ordering": false,
+	        "info":     false,
+	        "searching": false
+	} );
 		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
 		$('#performanceReportContent').html(bodyContent);
 	}
 	if(selection == 3)
 	{
 		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
-		$('#aggregateReportContent').html(bodyContent);
+		//$('#densityReportContent').html(bodyContent);
 	}
+	var x = document.getElementsByTagName("td");
+	x.align = "center";
 	
 } );
 

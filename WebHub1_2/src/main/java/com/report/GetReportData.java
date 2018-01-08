@@ -94,7 +94,7 @@ public class GetReportData extends HttpServlet {
 					}
 					
 					System.out.println("sum is " +sum);
-					String selector = "<tr><td>"+sum.toString()+ " </td><td> "+alightings.toString()+ " </td><td> "+records.toString()+"</td>";
+					String selector = "<tr><td align = 'center'>"+sum.toString()+ " </td><td align = 'center'> "+alightings.toString()+ " </td><td align = 'center'> "+records.toString()+"</td>";
 					selector+="</tr>";
 					System.out.println(selector);
 					response.setContentType("test/plain");
@@ -110,7 +110,7 @@ public class GetReportData extends HttpServlet {
 		
 	if(aggreg.equals("route"))
 	{
-		String selector = "<tr><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td></tr>";
+		String selector = "<tr><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td></tr>";
 		response.setContentType("test/plain");
 		response.setCharacterEncoding("UTF-8");
 		//response.getWriter().write("testing from servlet");
@@ -154,7 +154,7 @@ public class GetReportData extends HttpServlet {
 					Integer alightings = Rs.getInt(3);
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content +"<tr><td>" +id+"</td><td>"+boardings.toString()+"</td><td>"+alightings.toString()+"</td><td>"+records.toString()+"</td></tr>";
+					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString()+"</td><td align = 'center'>"+records.toString()+"</td></tr>";
 					track++;
 					countV++;
 				    
@@ -206,7 +206,7 @@ public class GetReportData extends HttpServlet {
 					Integer alightings = Rs.getInt(3);
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content + "<tr><td>"+id+"</td><td>"+boardings.toString()+"</td><td>"+alightings.toString()+"</td><td>"+records.toString() +"</td></tr>";
+					content = content + "<tr><td align = 'center'>"+id+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString()+"</td><td align = 'center'>"+records.toString() +"</td></tr>";
 					track++;
 					countV++;
 				    
