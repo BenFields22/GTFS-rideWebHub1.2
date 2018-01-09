@@ -94,7 +94,7 @@ public class GetReportData extends HttpServlet {
 					}
 					
 					System.out.println("sum is " +sum);
-					String selector = "<tr><td align = 'center'>"+sum.toString()+ " </td><td align = 'center'> "+alightings.toString()+ " </td><td align = 'center'> "+records.toString()+"</td>";
+					String selector = "<tr><td align = 'center'> "+records.toString()+"</td><td align = 'center'>"+sum.toString()+ " </td><td align = 'center'>"+alightings.toString()+ "</td>";
 					selector+="</tr>";
 					System.out.println(selector);
 					response.setContentType("test/plain");
@@ -154,7 +154,7 @@ public class GetReportData extends HttpServlet {
 					Integer alightings = Rs.getInt(3);
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString()+"</td><td align = 'center'>"+records.toString()+"</td></tr>";
+					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString()+"</td></tr>";
 					track++;
 					countV++;
 				    
@@ -206,7 +206,7 @@ public class GetReportData extends HttpServlet {
 					Integer alightings = Rs.getInt(3);
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content + "<tr><td align = 'center'>"+id+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString()+"</td><td align = 'center'>"+records.toString() +"</td></tr>";
+					content = content + "<tr><td align = 'center'>"+id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString() +"</td></tr>";
 					track++;
 					countV++;
 				    

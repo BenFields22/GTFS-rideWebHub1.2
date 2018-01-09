@@ -75,15 +75,13 @@ public class GetReportDataPerformance extends HttpServlet {
 					int track = -1;
 					int countV = 0;
 					while (Rs.next()) {
-						
-						
 						Integer MaxBoardings = Rs.getInt(1);
 						Integer MinBoardings = Rs.getInt(2);
 						Integer MaxAlightings = Rs.getInt(3);
 						Integer MinAlightings = Rs.getInt(4);
 						Integer records = Rs.getInt(5);
 						//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-						content = content +"<tr><td align = 'center'>" +MaxBoardings.toString()+"</td><td align = 'center'>"+MinBoardings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+records.toString()+"</td></tr>";
+						content = content +"<tr><td align = 'center'>"+records.toString()+"</td><td align = 'center'>" +MinBoardings.toString()+"</td><td align = 'center'>"+MaxBoardings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td></tr>";
 						track++;
 						countV++;
 					    
@@ -148,7 +146,7 @@ public class GetReportDataPerformance extends HttpServlet {
 					Integer MinAlightings = Rs.getInt(5);
 					Integer records = Rs.getInt(6);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>" +MaxBoardings.toString()+"</td><td align = 'center'>"+MinBoardings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+records.toString()+"</td></tr>";
+					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>" +MinBoardings.toString()+"</td><td align = 'center'>"+MaxBoardings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td></tr>";
 					track++;
 					countV++;
 				    
@@ -202,7 +200,7 @@ public class GetReportDataPerformance extends HttpServlet {
 					Integer MinAlightings = Rs.getInt(5);
 					Integer records = Rs.getInt(6);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
-					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>" +MaxBoardings.toString()+"</td><td align = 'center'>"+MinBoardings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+records.toString()+"</td></tr>";
+					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>" +MinBoardings.toString()+"</td><td align = 'center'>"+MaxBoardings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td></tr>";
 					track++;
 					countV++;
 				    
