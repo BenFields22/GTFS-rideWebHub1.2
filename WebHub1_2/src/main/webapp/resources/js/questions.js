@@ -102,7 +102,7 @@ function GenerateReport()
 		}
 		
 	}
-	if(selection = 3)
+	if(selection == 3)
 	{
 		window.open("../../DensityReport.html");
 	}
