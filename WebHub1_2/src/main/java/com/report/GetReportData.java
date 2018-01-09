@@ -46,7 +46,7 @@ public class GetReportData extends HttpServlet {
 		System.out.println("aggregation: "+aggreg);
 		System.out.println("agency: "+agency);
 		
-		if(aggreg.equals("system"))
+		if(aggreg.equals("System Level"))
 		{
 			try {
 				Class.forName("org.postgresql.Driver");
@@ -108,7 +108,7 @@ public class GetReportData extends HttpServlet {
 				}
 		}
 		
-	if(aggreg.equals("route"))
+	if(aggreg.equals("Route Level"))
 	{
 		String selector = "<tr><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td></tr>";
 		response.setContentType("test/plain");
@@ -117,7 +117,7 @@ public class GetReportData extends HttpServlet {
 		response.getWriter().write(selector);
 	}
 	
-	if(aggreg.equals("trip"))
+	if(aggreg.equals("Trip Level"))
 	{
 		
 		
@@ -172,7 +172,7 @@ public class GetReportData extends HttpServlet {
 			}
 	}
 	
-	if(aggreg.equals("stop"))
+	if(aggreg.equals("Stop Level"))
 	{
 		try {
 			Class.forName("org.postgresql.Driver");

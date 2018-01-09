@@ -32,20 +32,20 @@ if(agency == 3)
 
 if(agg == 1)
 	{
-	 agg = "system"
+	 agg = "System Level"
 	}
 if(agg == 2)
 {
- agg = "route"
+ agg = "Route Level"
 }
 if(agg == 3)
 {
- agg = "stop"
+ agg = "Stop Level"
 }
 
 if(agg == 4)
 {
- agg = "trip"
+ agg = "Trip Level"
 }
 var bodycontent;
 
