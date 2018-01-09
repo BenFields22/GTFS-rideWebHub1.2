@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html>
+<br>
+<br>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="expires" content="-1">
 <title>Data Upload</title>
-<link rel="stylesheet" href="resources/css/dataUpload.css">
-<link rel="stylesheet" href="resources/css/reset.css"> <!-- CSS reset -->
-<link rel="stylesheet" href="resources/css/style.css"> <!-- Resource style -->
-
-<script src="resources/js/jquery.1.9.1.min.js"></script>
-
-<script src="resources/js/vendor/jquery.ui.widget.js"></script>
-<script src="resources/js/jquery.iframe-transport.js"></script>
-<script src="resources/js/jquery.fileupload.js"></script>
-<script src="resources/js/modernizr.js"></script> <!-- Modernizr -->
-
-
 
 
 <!-- bootstrap just to have good looking page -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link href="bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
 
-<!-- we code these -->
+<link rel="stylesheet" href="resources/css/dataUpload.css">
+<link rel="stylesheet" href="resources/css/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="resources/css/style.css"> <!-- Resource style -->
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 
-
-<!-- header style ignore it -->
-
-<link href="resources/css/style.css" rel="stylesheet">
+<script src="resources/js/vendor/jquery.ui.widget.js"></script>
+<script src="resources/js/jquery.iframe-transport.js"></script>
+<script src="resources/js/jquery.fileupload.js"></script>
+<script src="resources/js/modernizr.js"></script> <!-- Modernizr -->
 
 
 </head>
@@ -253,7 +247,7 @@
 		<li id='Finish'data-content="finish">
 			<p>
 			<div id="fileChecklist">
-			<h2>Progress</h2>
+			<h1>Progress</h1>
 			<div id="filelist">No files have been loaded</div>
 			</div>
 			<button onclick="loadIntoDB()">Upload to Database</button> <button type='button' id='exportButton'>Zip</button><br>

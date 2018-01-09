@@ -1,32 +1,4 @@
-body {
-  
-  font-size: 100%;
-  font-family: "PT Sans", sans-serif;
-  color: #f8f7ee;
-  background: url("../img/wallpaper.jpg") no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
-header {
-  position: relative;
-  height: 100px;
-  line-height: 100px;
-  text-align: center;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: white;
-  color:black:
-}
-header img{
-	position:absolute;
-	left:0;
-	top:0;
-	opacity:1.0;
-	width:12%;
-	height:100%;
-}
+
 
 #edit2 textarea{
 	width:800px;
@@ -51,12 +23,6 @@ header img{
 	color:red;
 }
 
-header h1 {
-	color:black;
-  font-size: 30px;
-  font-size: 2.00rem;
-  text-decoration: underline;
-}
 #loader{
 	width:500;
 	height:500;
