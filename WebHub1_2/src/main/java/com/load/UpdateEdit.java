@@ -24,10 +24,13 @@ public class UpdateEdit extends HttpServlet {
 		String html = "";
 		Set myset = UploadServlet.uploadedFiles;
 		Iterator<String> itr = myset.iterator();
+		html += "<table id='editOptions' class ='table'><tr><th>FileName</th><th>Edit Button</th></tr>";
 		while(itr.hasNext()){
 				String curr = itr.next();
-			  html = html+curr+" "+"<button id=\"editButton\" type=\"button\" onclick=\"editDocument('"+curr+"')\">Edit</button><br>";
+			  html = html+ "<tr><td>"+curr+"     </td><td> "+"<button id=\"editButton\" type=\"button\" onclick=\"editDocument('"+curr+"')\">Edit</button></td></tr>";
 			}
+		html += "</table>";
+		//<style>#editOptions{color:black;}</style>
 		response.setContentType("test/plain");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(html);
