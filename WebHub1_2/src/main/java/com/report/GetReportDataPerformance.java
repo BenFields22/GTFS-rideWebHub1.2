@@ -1,5 +1,7 @@
 package com.report;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.load.UploadServlet;
 
 /**
  * Servlet implementation class GetReportDataPerformance
@@ -45,6 +49,23 @@ public class GetReportDataPerformance extends HttpServlet {
 		System.out.println("agency: "+agency);
 		System.out.println("report selection: "+select);
 		
+		String path;
+		path = getServletContext().getRealPath("/")+"CSVFolder//";
+		File file2 = new File(path+"reportData.csv");
+		file2.createNewFile();
+		if(file2.exists())
+		{
+			System.out.println("CSV File Created");
+		}
+		else
+		{
+			System.out.println("Failed to create CSV File");
+		}
+		FileWriter fileWriter = null;
+		fileWriter = new FileWriter(file2);
+		//fileWriter.append("Initial,file,test,object,2");
+		
+		
 		if(aggreg.equals("System Level"))
 		{
 			try {
@@ -66,7 +87,8 @@ public class GetReportDataPerformance extends HttpServlet {
 					ResultSet Rs = stmt.executeQuery();
 					
 					
-					
+					fileWriter.append("Records,MinBoardings,MaxBoardings,MinAlightings,MaxAlightings,\n");
+
 					System.out.println(query);
 					
 					int count = 0;
@@ -82,6 +104,7 @@ public class GetReportDataPerformance extends HttpServlet {
 						Integer records = Rs.getInt(5);
 						//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
 						content = content +"<tr><td align = 'center'>"+records.toString()+"</td><td align = 'center'>" +MinBoardings.toString()+"</td><td align = 'center'>"+MaxBoardings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td></tr>";
+						fileWriter.append(records.toString()+","+MinBoardings.toString()+","+MaxBoardings.toString()+","+MinAlightings.toString()+","+MaxAlightings.toString()+"\n");
 						track++;
 						countV++;
 					    
@@ -102,6 +125,9 @@ public class GetReportDataPerformance extends HttpServlet {
 	if(aggreg.equals("Route Level"))
 	{
 		String selector = "<tr><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td></tr>";
+		fileWriter.append("Route_id,Records,MinBoardings,MaxBoardings,MinAlightings,MaxAlightings,\n");
+
+		fileWriter.append("NULL,NULL,NULL,NULL,NULL,NULL,\n");
 		response.setContentType("test/plain");
 		response.setCharacterEncoding("UTF-8");
 		//response.getWriter().write("testing from servlet");
@@ -129,7 +155,8 @@ public class GetReportDataPerformance extends HttpServlet {
 				PreparedStatement stmt = con.prepareStatement(query);
 				ResultSet Rs = stmt.executeQuery();
 				
-				
+				fileWriter.append("Trip_id,Records,MinBoardings,MaxBoardings,MinAlightings,MaxAlightings,\n");
+
 				
 				System.out.println(query);
 				int count = 0;
@@ -147,6 +174,8 @@ public class GetReportDataPerformance extends HttpServlet {
 					Integer records = Rs.getInt(6);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
 					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>" +MinBoardings.toString()+"</td><td align = 'center'>"+MaxBoardings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td></tr>";
+					fileWriter.append(id+","+records.toString()+","+MinBoardings.toString()+","+MaxBoardings.toString()+","+MinAlightings.toString()+","+MaxAlightings.toString()+"\n");
+
 					track++;
 					countV++;
 				    
@@ -183,7 +212,8 @@ public class GetReportDataPerformance extends HttpServlet {
 				PreparedStatement stmt = con.prepareStatement(query);
 				ResultSet Rs = stmt.executeQuery();
 				
-				
+				fileWriter.append("Stop_id,Records,MinBoardings,MaxBoardings,MinAlightings,MaxAlightings,\n");
+
 				
 				System.out.println(query);
 				int count = 0;
@@ -201,6 +231,7 @@ public class GetReportDataPerformance extends HttpServlet {
 					Integer records = Rs.getInt(6);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
 					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>" +MinBoardings.toString()+"</td><td align = 'center'>"+MaxBoardings.toString()+"</td><td align = 'center'>"+MinAlightings.toString()+"</td><td align = 'center'>"+MaxAlightings.toString()+"</td></tr>";
+					fileWriter.append(id+","+records.toString()+","+MinBoardings.toString()+","+MaxBoardings.toString()+","+MinAlightings.toString()+","+MaxAlightings.toString()+"\n");
 					track++;
 					countV++;
 				    
@@ -217,6 +248,8 @@ public class GetReportDataPerformance extends HttpServlet {
 				e.printStackTrace();
 			}
 	}
+	fileWriter.flush();
+	fileWriter.close();
 	
 	}
 

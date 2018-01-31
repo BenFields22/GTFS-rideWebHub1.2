@@ -95,7 +95,7 @@ if(selection == 2)
 
 if(selection == 3)
 {
-	/*$.ajax({
+	$.ajax({
 	       url:'GetReportDataDensity',
 	       type:'post',
 	       cache:false,
@@ -112,8 +112,9 @@ if(selection == 3)
 	    }
 	    
 	);
-	$('#densityReportContent').html(bodyContent);*/
+	$('#densityReportContent').html(bodyContent);
 }
+
 
 $(document).ready(function() {
 	
@@ -142,8 +143,8 @@ $(document).ready(function() {
 	}
 	if(selection == 3)
 	{
-		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
-		//$('#densityReportContent').html(bodyContent);
+		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
+		$('#densityReportContent').html(bodyContent);
 	}
 	var x = document.getElementsByTagName("td");
 	x.align = "center";

@@ -15,6 +15,21 @@
     color: white;
 }
 
+#densityReportContent table
+{
+	width: 50%;
+	overflow-x: auto;
+}
+
 img{
 	width:60%;
 }
+
+#mapid { 
+	height: 180px; 
+	position: absolute;
+    top: 0;
+    right: 0;
+    width:50%;
+    height:100%;
+	}

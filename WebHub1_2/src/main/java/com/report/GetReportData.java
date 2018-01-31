@@ -1,5 +1,7 @@
 package com.report;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.load.UploadServlet;
 
 /**
  * Servlet implementation class GetReportData
@@ -45,6 +49,25 @@ public class GetReportData extends HttpServlet {
 		
 		System.out.println("aggregation: "+aggreg);
 		System.out.println("agency: "+agency);
+		
+		String path;
+		System.out.println("Path: "+getServletContext().getRealPath("/"));
+		path = getServletContext().getRealPath("/")+"CSVFolder//";
+		File file2 = new File(path+"reportData.csv");
+		file2.createNewFile();
+		if(file2.exists())
+		{
+			System.out.println("CSV File Created");
+		}
+		else
+		{
+			System.out.println("Failed to create CSV File");
+		}
+		FileWriter fileWriter = null;
+		fileWriter = new FileWriter(file2);
+		//fileWriter.append("Initial,file,test,object,1");
+		
+
 		
 		if(aggreg.equals("System Level"))
 		{
@@ -92,10 +115,11 @@ public class GetReportData extends HttpServlet {
 						//agency = Rs2.getString(1);
 						records = Rs3.getInt(1);
 					}
-					
+					fileWriter.append("Records,Boardings,Alightings,\n");
 					System.out.println("sum is " +sum);
 					String selector = "<tr><td align = 'center'> "+records.toString()+"</td><td align = 'center'>"+sum.toString()+ " </td><td align = 'center'>"+alightings.toString()+ "</td>";
 					selector+="</tr>";
+					fileWriter.append(records.toString()+","+sum.toString()+","+alightings.toString()+","+"\n");
 					System.out.println(selector);
 					response.setContentType("test/plain");
 					response.setCharacterEncoding("UTF-8");
@@ -111,6 +135,9 @@ public class GetReportData extends HttpServlet {
 	if(aggreg.equals("Route Level"))
 	{
 		String selector = "<tr><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td><td align = 'center'>NULL</td></tr>";
+		fileWriter.append("Route_id,Records,Boardings,Alightings,\n");
+
+		fileWriter.append("NULL,NULL,NULL,NULL,\n");
 		response.setContentType("test/plain");
 		response.setCharacterEncoding("UTF-8");
 		//response.getWriter().write("testing from servlet");
@@ -140,7 +167,8 @@ public class GetReportData extends HttpServlet {
 				ResultSet Rs = stmt.executeQuery();
 				
 				
-				
+				fileWriter.append("Trip_id,Records,Boardings,Alightings,\n");
+
 				System.out.println(query);
 				int count = 0;
 				
@@ -155,6 +183,8 @@ public class GetReportData extends HttpServlet {
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
 					content = content +"<tr><td align = 'center'>" +id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString()+"</td></tr>";
+					fileWriter.append(id+","+records.toString()+","+boardings.toString()+","+alightings.toString()+"\n");
+					
 					track++;
 					countV++;
 				    
@@ -192,7 +222,8 @@ public class GetReportData extends HttpServlet {
 				PreparedStatement stmt = con.prepareStatement(query);
 				ResultSet Rs = stmt.executeQuery();
 				
-				
+				fileWriter.append("Stop_id,Records,Boardings,Alightings,\n");
+
 				
 				System.out.println(query);
 				int count = 0;
@@ -207,6 +238,7 @@ public class GetReportData extends HttpServlet {
 					Integer records = Rs.getInt(4);
 					//content = content + "[\""+id+"\",\""+boardings.toString()+"\",\""+alightings.toString()+"\",\""+records.toString()+"\"]";
 					content = content + "<tr><td align = 'center'>"+id+"</td><td align = 'center'>"+records.toString()+"</td><td align = 'center'>"+boardings.toString()+"</td><td align = 'center'>"+alightings.toString() +"</td></tr>";
+					fileWriter.append(id+","+records.toString()+","+boardings.toString()+","+alightings.toString()+"\n");
 					track++;
 					countV++;
 				    
@@ -223,6 +255,9 @@ public class GetReportData extends HttpServlet {
 				e.printStackTrace();
 			}
 	}
+	
+	fileWriter.flush();
+	fileWriter.close();
 	
 	}
 }
