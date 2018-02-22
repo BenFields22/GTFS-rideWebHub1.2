@@ -131,6 +131,15 @@
     <servlet-name>GetReportDataDensity</servlet-name>
     <url-pattern>/GetReportDataDensity</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>GetReportSelections</servlet-name>
+    <servlet-class>com.report.GetReportSelections</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReportSelections</servlet-name>
+    <url-pattern>/GetReportSelections</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
