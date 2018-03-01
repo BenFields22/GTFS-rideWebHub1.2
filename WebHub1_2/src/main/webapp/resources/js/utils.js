@@ -14,14 +14,23 @@ function deleteFiles(){
 }
 
 function loadIntoDB(){
-	var xhr1 = new XMLHttpRequest();
-	xhr1.onload = function(){
-		if(xhr1.status ===200){
-			document.getElementById("uploadClick").innerHTML = xhr1.responseText;
+	var person = prompt("Please enter the password", "Password");
+	if (person != "ride") {
+        alert("Sorry that is the wrong password");
+    }
+	else
+		{
+			//alert("that is correct");
+			var xhr1 = new XMLHttpRequest();
+			xhr1.onload = function(){
+				if(xhr1.status ===200){
+					document.getElementById("uploadClick").innerHTML = xhr1.responseText;
+				}
+			}
+			xhr1.open('POST','loadFeedIntoDB',true);
+			xhr1.send(null);
 		}
-	}
-	xhr1.open('POST','loadFeedIntoDB',true);
-	xhr1.send(null);
+	
 }
 
 function checkExit(){
