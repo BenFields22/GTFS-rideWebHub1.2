@@ -171,3 +171,33 @@ function updateAns(formButtom)
 {
 	answer = formButtom.value;
 }
+var agency = document.getElementById("reportAgency").value
+if(agency == 1)
+{
+	agency = "RVTD"
+}
+if(agency == 2)
+{
+	agency = "Union County"
+}
+if(agency == 3)
+{
+	agency = "LTD"
+}
+//update the selection that the user has for reports
+$.ajax({
+    url:'GetReportSelections',
+    type:'post',
+    cache:false,
+    data:{"agcy":agency},
+    async:false,
+    success:function(data){
+       //alert(data);
+    	$('#reportAggregation').html(data);
+       
+    },
+    error:function(){
+      alert('error when getting report content');
+    }
+ })
+
