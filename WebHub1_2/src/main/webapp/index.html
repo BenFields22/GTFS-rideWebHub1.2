@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="resources/css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="resources/css/style.css"> <!-- Resource style -->
 	
+	
 	<script src="resources/js/modernizr.js"></script> <!-- Modernizr -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
@@ -43,9 +44,9 @@
 				Information regarding the standard can be found at <a target=# href="https://github.com/ODOT-PTS/GTFS-ride">https://github.com/ODOT-PTS/GTFS-ride</a>.
 				This tool suite provides the ability to perform the following tasks:<br>
 				- Validate GTFS-ride feeds<br>
-			- Enter GTFS-ride feeds into a central data repository<br>
-			- Create new GTFS-ride feeds<br>
-			- Run analytics on ridership data contained within the data repository<br>
+				- Enter GTFS-ride feeds into a central data repository<br>
+				- Create new GTFS-ride feeds<br>
+				- Run analytics on ridership data contained within the data repository<br>
 			</p>
 			
 		</li>
@@ -70,21 +71,34 @@
 		</li>
 
 		<li id='analyticsPanel'data-content="Reports">
-			<p>
-			Please select the parameters for the report you would like to generate:<br>
+			<div class="p">
+				<h1>Please select the parameters for the report you would like to generate:</h1><br>
+				Agency:
+				<select id="reportAgency">
+					<option value="1">RVTD</option>
+				</select><br>
 				Report Type:
 				<select id="report">
 					<option value="1">Aggregate Ridership</option>
 					<option value="2">Performance Report</option>
 					<option value="3">Density Report</option>
-				</select><br>
+				</select>
+				<br>
 				Aggregation Level:
 				<select id="reportAggregation">
 				</select><br>
-				Agency:
-				<select id="reportAgency">
-					<option value="1">RVTD</option>
-				</select><br><br>
+				<h1>Report Description:</h1>
+				<div class="reportInfo">
+				  	<p>Description of report</p>
+				</div><br>
+				<h1>Column Description:</h1>
+				<div class="reportInfo"> 
+				  	<p>Column info.</p>
+				</div>
+				<br>
+				<br>
+			
+				
 				Time Period:<br>
 				Start Time:
 				<input id="datePickerS" type="date"> MinDate: 20170102  
@@ -94,7 +108,7 @@
 				<input id ="timePickerE" type="time"> MaxTime: 07:09 pm<br>
 				<br>
 				<input type="submit" value="Generate"onclick="GenerateReport()">
-			</p>
+			</div>
 		</li>
 
 		<li id='aboutPanel'data-content="About">
@@ -123,7 +137,7 @@
 <script src="resources/js/questions.js"></script>
 
 </div>
-<footer class="footer"><p>Copyright &copy; 2017 Oregon Department of Transportation (ODOT)</p></footer>
+<footer class="footer"><p>Copyright &copy; 2018 Oregon Department of Transportation (ODOT)</p></footer>
 </body>
 
 
