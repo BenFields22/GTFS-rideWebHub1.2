@@ -3,6 +3,7 @@
 Primary style
 
 -------------------------------- */
+
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -408,3 +409,8 @@ ul{
 	padding-bottom:0px;
 	margin:0px;
 }
+
+#mainmapid { 
+	height: 900px; 
+	width:900px;
+	}

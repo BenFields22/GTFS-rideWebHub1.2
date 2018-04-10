@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Report</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.css"/>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/datatables.min.js"></script>
+<script type="text/javascript" src="resources/js/reportLoading.js"></script>
+
+</head>
+<body>
+<h1>Ridership Performance Report</h1>
+
+<a href='CSVFolder/reportData.csv' download> Click to download csv</a><br>
+<div id="reportInfo">
+loading....
+</div>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Passenger Miles</th>
+                <th>Vehicle Revenue Miles</th>
+                <th>PMT(Passenger Miles Traveled)/VRM(Vehicle Revenue Miles)</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+            		<th>Passenger Miles</th>
+                <th>Vehicle Revenue Miles</th>
+                <th>PMT(Passenger Miles Traveled)/VRM(Vehicle Revenue Miles)</th>
+            </tr>
+        </tfoot>
+        <tbody id="NTDperformanceReportContent">
+            
+        </tbody>
+    </table>
+</body>
+</html>

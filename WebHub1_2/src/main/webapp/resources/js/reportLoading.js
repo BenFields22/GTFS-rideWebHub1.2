@@ -115,6 +115,28 @@ if(selection == 3)
 	$('#densityReportContent').html(bodyContent);
 }
 
+if(selection == 4)
+{
+	$.ajax({
+	       url:'GetReportDataNTDPerformance',
+	       type:'post',
+	       cache:false,
+	       data:{"select":selection,"aggreg":agg, "agcy":agency,"StartDate":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
+	       async:false,
+	       success:function(data){
+	          alert(data);
+	          bodyContent = data;
+	          
+	       },
+	       error:function(){
+	         alert('error when getting report content');
+	       }
+	    }
+	    
+	);
+	$('#NTDperformanceReportContent').html(bodyContent);
+}
+
 
 $(document).ready(function() {
 	
@@ -146,6 +168,18 @@ $(document).ready(function() {
 		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
 		$('#densityReportContent').html(bodyContent);
 	}
+	if(selection == 4)
+	{
+		$('#example').DataTable( {
+	        "paging":   false,
+	        "ordering": false,
+	        "info":     false,
+	        "searching": false
+	} );
+		$('#reportInfo').html("<strong>Agency:</strong>  "+ agency+"<br> <strong>Aggregation:</strong> "+ agg+" <br> <strong>StartDate:</strong> "+ date+ "      <strong>StartTime:</strong> "+ time +" <br> <strong>EndDate:</strong> "+ date2 +"      <strong>EndTime:</strong> "+ time2 +"<br><br>" );
+		$('#NTDperformanceReportContent').html(bodyContent);
+	}
+	
 	var x = document.getElementsByTagName("td");
 	x.align = "center";
 	
