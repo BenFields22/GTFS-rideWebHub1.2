@@ -124,7 +124,7 @@ if(selection == 4)
 	       data:{"select":selection,"aggreg":agg, "agcy":agency,"StartDate":date,"EndDate":date2,"StartTime":time,"EndTime":time2},
 	       async:false,
 	       success:function(data){
-	          alert(data);
+	          //alert(data);
 	          bodyContent = data;
 	          
 	       },

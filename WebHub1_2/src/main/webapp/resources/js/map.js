@@ -11,4 +11,26 @@ var mymap = L.map('mainmapid').setView([43.8041, -120.5542], 7);
 		id: 'mapbox.streets'
 	}).addTo(mymap);
 	
+	// Initialise the FeatureGroup to store editable layers
+	var drawnItems = new L.FeatureGroup();
+	mymap.addLayer(drawnItems);
+
+	// Initialise the draw control and pass it the FeatureGroup of editable layers
+	var drawControl = new L.Control.Draw({
+	  edit: {
+	    featureGroup: drawnItems
+	  }
+	});
+
+	mymap.addControl(drawControl);
+
+	mymap.on(L.Draw.Event.CREATED, function (e) {
+	  var type = e.layerType
+	  var layer = e.layer;
+
+	  // Do whatever else you need to. (save to db, add to map etc)
+
+	  drawnItems.addLayer(layer);
+	});
+	
 	
