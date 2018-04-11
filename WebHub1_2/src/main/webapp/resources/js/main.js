@@ -23,6 +23,7 @@ jQuery(document).ready(function($){
 					'height': slectedContentHeight
 				}, 200);
 			}
+			mymap.invalidateSize();
 		});
 
 		//hide the .cd-tabs::after element when tabbed navigation has scrolled to the end (mobile version)

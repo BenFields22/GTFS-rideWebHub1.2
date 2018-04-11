@@ -44,31 +44,33 @@ public class loadFeedIntoDB extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String dbName = "April2018";
 		String [] args = new String[5];
 		String realPath = getServletContext().getRealPath("/");
 		args[0] = "--driverClass=\"org.postgresql.Driver\"";
-		args[1] = "--url=\"jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/testDB\"";
+		args[1] = "--url=\"jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/"+dbName+"\"";
 		args[2] = "--username=\"rideadmindb\"";
 		args[3] = "--password=\"alltheridestuff\"";
 		args[4] = realPath+"testFolder/";
 		String fileLocation = realPath+"testFolder/";
+		
 		
 		boolean b = true;
 		try{
 			GtfsDatabaseLoaderMain.main(args);
 			b = false;
 		}catch(HibernateException exception){
-		     System.out.println("Problem creating session factory");
+		     System.out.println("Problem creating GTFS file session factory");
 		     exception.printStackTrace();
 		}
 		
 		if(b){
-			System.out.println("Upload unsuccessful");
+			System.out.println("GTFS Upload unsuccessful");
 		}
 		
 		try {
 			Class.forName("org.postgresql.Driver");
-			Connection con = DriverManager.getConnection("jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/testDB","rideadmindb","alltheridestuff");
+			Connection con = DriverManager.getConnection("jdbc:postgresql://ridedb.cr8hn6m3gchm.us-west-2.rds.amazonaws.com/"+dbName,"rideadmindb","alltheridestuff");
 			if	(con.isValid(0))
 			{
 				System.out.println("Connection for uploading ride files made successfully");
@@ -139,8 +141,6 @@ public class loadFeedIntoDB extends HttpServlet {
 					text = brTest.readLine();
 					// Stop. text is the first line.
 					System.out.println(text);
-					
-
 				}
 				
 				query = "CREATE TABLE IF NOT EXISTS trip_capacity("+
@@ -193,9 +193,7 @@ public class loadFeedIntoDB extends HttpServlet {
 						"transaction_type text,"+
 						"fare_media text,"+
 						"accompanying_device text,"+
-						"transfer_status text,"+
-						"PRIMARY KEY(rider_id)"+
-						");";
+						"transfer_status text);";
 				stmt = con.prepareStatement(query);
 				tmpDir = new File(fileLocation+"rider_trip.txt");
 				exists = tmpDir.exists();
@@ -235,8 +233,7 @@ public class loadFeedIntoDB extends HttpServlet {
 						"route_id text,"+
 						"direction_id text,"+
 						"trip_id text,"+
-						"stop_id text,"+
-						"PRIMARY KEY(ridership_start_date,ridership_end_date)"+
+						"stop_id text"+
 						");";
 				
 				stmt = con.prepareStatement(query);

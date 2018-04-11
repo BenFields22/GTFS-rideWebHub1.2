@@ -3,6 +3,7 @@
 Primary style
 
 -------------------------------- */
+
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -407,4 +408,66 @@ ul{
 	padding-top:0px;
 	padding-bottom:0px;
 	margin:0px;
+}
+
+#mainmapid { 
+	position:relative;
+	display: inline-block;
+    margin-left: 0px;
+    margin-right:0px;
+	height: 600px; 
+	width:70%;
+	float:left;
+	}
+	
+
+#mapreportInfo{
+	position:relative;
+	float:right;
+	width:20%;
+	margin-left:0;
+	margin-right:7%;
+}
+
+#MapPanel p{
+	margin-bottom:5px;
+}
+
+#reportContentMap{
+	position:relative;
+	margin-left:0px;
+	border-radius: 25px;
+    border: 2px solid #e8eff1;
+    padding: 15px;
+    padding-bottom:5px;
+    margin-bottom:5px; 
+    width: 100%;
+    height: auto;
+    color:black;
+}
+
+#TimeSelectorMap{
+	position:relative;
+	margin-left:0px;
+	border-radius: 25px;
+	margin-bottom:5px;
+    border: 2px solid #e8eff1;
+    padding: 15px;
+    padding-bottom:5px; 
+    width: 100%;
+    height: auto;
+    color:black;
+}
+
+#ReportTypeMap{
+	position:relative;
+	margin-left:0px;
+	border-radius: 25px;
+    border: 2px solid #e8eff1;
+    padding: 15px;
+    margin-bottom:5px;
+    padding-bottom:5px;  
+    width: 100%;
+    height: auto;
+    color:black;
 }

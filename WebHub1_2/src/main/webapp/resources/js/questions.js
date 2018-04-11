@@ -21,6 +21,7 @@ $(document).ready(function(){
 		  alert('The File APIs are not fully supported in this browser.');
 		}
 	
+	
 });
 function GenerateReportHTML()
 {
@@ -105,6 +106,10 @@ function GenerateReport()
 	if(selection == 3)
 	{
 		window.open("../../DensityReport.html");
+	}
+	if(selection == 4)
+	{
+		window.open("../../NTDPerformanceSystem.html");	
 	}
 	
 
